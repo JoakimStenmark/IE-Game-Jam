@@ -30,6 +30,7 @@ public class Window : MonoBehaviour
         if (collision.CompareTag("Player") && howDirty != 0) // && isDirty)
         {
             Debug.Log("CLEAN ME!!!");
+            player = collision.GetComponent<PlayerMovement>();
             player.canClean = true;
 
             /*Get a signal from the player that he is trying to clean the window 

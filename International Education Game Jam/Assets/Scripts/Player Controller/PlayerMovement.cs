@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,14 +40,14 @@ public class PlayerMovement : MonoBehaviour
     public int currentItem = 1;
 
     //--- Window : State ---
-    private Window window;
+    private Window windowToClean;
     public bool canClean = false;
 
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        window = FindObjectOfType<Window>();
+        windowToClean = FindObjectOfType<Window>();
         itemHeld = ItemHeld.Nothing;
     }
 
@@ -73,11 +74,11 @@ public class PlayerMovement : MonoBehaviour
 
         cleanTime += Time.deltaTime;
 
-        if (canClean && Input.GetKeyDown(KeyCode.Space) && (int)itemHeld < 3)
+        if (canClean && Input.GetKey(KeyCode.Space) && (int)itemHeld < 3)
         {
             if(cleanTime >= cleanSpeed)
             {
-                window.CleanWindowCombo();
+                windowToClean.CleanWindowCombo();
                 PlayRightAnimation();
                 cleanTime = 0;
             }
@@ -129,8 +130,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        windowToClean = collision.GetComponent<Window>();
+    }
     private void PlayRightAnimation()
     {
-        
+        throw new NotImplementedException();
     }
+
 }
