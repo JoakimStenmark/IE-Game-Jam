@@ -10,6 +10,14 @@ public enum ItemHeld
     Nothing
 }
 
+public enum PlayerState
+{
+    Wiping = 0,
+    Spraying,
+    WhackingBroom,
+    BeingHit
+}
+
 public class PlayerMovement : MonoBehaviour
 {
     //--- Player : Movement ---
@@ -70,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
             if(cleanTime >= cleanSpeed)
             {
                 window.CleanWindowCombo();
+                PlayRightAnimation();
                 cleanTime = 0;
             }
         }
@@ -118,5 +127,10 @@ public class PlayerMovement : MonoBehaviour
                 itemHeld = ItemHeld.Broom;
                 break;
         }
+    }
+
+    private void PlayRightAnimation()
+    {
+        
     }
 }
