@@ -57,18 +57,26 @@ public class WindowManager : MonoBehaviour
 
     public GameObject GetSpawnableWindow()
     {
-        bool foundCleanWindow = false;
-        while (!foundCleanWindow)
+
+        List<GameObject> cleanWindows = new List<GameObject>();
+
+        for (int y = 0; y < windowColumnAmount; y++)
         {
-            int randomY = Random.Range(0, windowRowAmount);
-            int randomX = Random.Range(0, windowColumnAmount);
-            if (!windows[randomY, randomX].GetComponent<Window>().isDirty)
+            for (int x = 0; x < windowRowAmount; x++)
             {
-                foundCleanWindow = true;
-                return windows[randomY, randomX];
+                if (!windows[x, y].GetComponent<Window>().isDirty)
+                {
+                    cleanWindows.Add(windows[x, y]);
+                }
             }
         }
-        Debug.LogError("No windows could be returned");
-        return null;
+
+        if (cleanWindows[0] == null)
+        {
+            return null;
+        }
+
+        return cleanWindows[Random.Range(0, cleanWindows.Capacity)];
+
     }
 }
