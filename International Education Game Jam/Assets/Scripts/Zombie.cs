@@ -71,6 +71,7 @@ public class Zombie : MonoBehaviour
                         attackTime += Time.deltaTime;
                         if (attackTime >= attackSpeed)
                         {
+                            // TODO: Play attack animation
                             // TODO: Stun player
                         }
                         break;
