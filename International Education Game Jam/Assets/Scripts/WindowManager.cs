@@ -52,4 +52,20 @@ public class WindowManager : MonoBehaviour
         return true;
     }
 
+    public GameObject GetSpawnableWindow()
+    {
+        bool foundCleanWindow = false;
+        while (!foundCleanWindow)
+        {
+            int randomY = Random.Range(0, windowRowAmount);
+            int randomX = Random.Range(0, windowColumnAmount);
+            if (!windows[randomY, randomX].GetComponent<Window>().isDirty)
+            {
+                foundCleanWindow = true;
+                return windows[randomY, randomX];
+            }
+        }
+        Debug.LogError("No windows could be returned");
+        return null;
+    }
 }
