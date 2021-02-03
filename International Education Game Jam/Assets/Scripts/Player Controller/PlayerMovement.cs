@@ -22,10 +22,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 playerDirection;
 
     //--- Player : Animation --- 
+    [SerializeField] private float cleanSpeed;
+    private float cleanTime;
+
 
     //--- Player : Item Select ---
-    private ItemHeld itemHeld;
-    private int currentItem = 1;
+    [SerializeField] private ItemHeld itemHeld;
+    public int currentItem = 1;
 
     //--- Window : State ---
     private Window window;
@@ -41,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
         playerDirection.x = Input.GetAxisRaw("Horizontal");
         playerDirection.y = Input.GetAxisRaw("Vertical");
 
@@ -60,12 +62,15 @@ public class PlayerMovement : MonoBehaviour
             speed = downSpeed;
         }
 
-        if (canClean)
+
+        cleanTime += Time.deltaTime;
+
+        if (canClean && Input.GetKeyDown(KeyCode.Space) && (int)itemHeld < 3)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if(cleanTime >= cleanSpeed)
             {
-                window.howDirty--;
-                window.WindowState();
+                window.CleanWindowCombo();
+                cleanTime = 0;
             }
         }
 
@@ -84,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
             currentItem = 3;
             ItemSelected();
         }
-
     }
 
     private void FixedUpdate()
@@ -115,5 +119,4 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
     }
-
 }

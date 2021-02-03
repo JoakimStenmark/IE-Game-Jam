@@ -215,6 +215,8 @@ MonoBehaviour:
   horizontalSpeed: 7
   upSpeed: 2.5
   downSpeed: 4
+  cleanSpeed: 1.5
+  currentItem: 1
   canClean: 0
 --- !u!50 &1467045089
 Rigidbody2D:

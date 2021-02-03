@@ -10,6 +10,8 @@ public class Window : MonoBehaviour
     public int howDirty = 3; /*if this scale is a 4 (0 - 3)it is really dirty --- if it is at 0 it is clean*/
 
     private PlayerMovement player;
+    public bool isSprayed = false;
+
 
     void Start()
     {
@@ -18,13 +20,18 @@ public class Window : MonoBehaviour
         WindowState();
     }
 
+    private void Update()
+    {
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && howDirty != 0) // && isDirty)
         {
             Debug.Log("CLEAN ME!!!");
             player.canClean = true;
-            
+
             /*Get a signal from the player that he is trying to clean the window 
             and that if he applies the window clean move to it, it will change state. */
         }
@@ -32,7 +39,7 @@ public class Window : MonoBehaviour
 
     public void WindowState()
     {
-        if(howDirty <= 0)
+        if (howDirty <= 0)
         {
             howDirty = 0;
         }
@@ -59,6 +66,26 @@ public class Window : MonoBehaviour
                 spriteRenderer.color = Color.black;
                 isDirty = true;
                 break;
+        }
+    }
+
+    public void CleanWindowCombo()
+    {
+        if (player.currentItem == 2)
+        {
+            howDirty--;
+            WindowState();
+            isSprayed = true;
+        }
+        else if (isSprayed == true && player.currentItem == 1)
+        {
+            howDirty = 0;
+            WindowState();
+        }
+        else if(isSprayed == false && player.currentItem == 1)
+        {
+            howDirty--;
+            WindowState();
         }
     }
 
