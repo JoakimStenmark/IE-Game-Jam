@@ -5,7 +5,6 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     [SerializeField] private ZombieType type;
-    private float attackRange;
     private float attackTime;
     private float attackSpeed;
     private float fallSpeed;
@@ -27,10 +26,9 @@ public class Zombie : MonoBehaviour
     }
 
     // Sets up all variable for the zombie
-    public void Setup(ZombieType _type, float _attackRange, float _attackSpeed, float _fallSpeed)
+    public void Setup(ZombieType _type, float _attackSpeed, float _fallSpeed)
     {
         type = _type;
-        attackRange = _attackRange;
         attackSpeed = _attackSpeed;
         fallSpeed = _fallSpeed;
     }
@@ -54,31 +52,37 @@ public class Zombie : MonoBehaviour
             {
                 transform.position -= new Vector3(0, fallSpeed * Time.deltaTime, 0);
                 if (transform.position.y < -6.5f)
-                {
                     Destroy(gameObject);
-                }
             }
 
-            // If the zombie is in range of the player it will try to attack the player
-            if (Vector2.Distance(transform.position, transform.position) < attackRange)
+            attackTime += Time.deltaTime;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            switch (type)
             {
-                switch (type)
-                {
-                    case ZombieType.falling:
-                        // TODO: Turn on hanging zombie
-                        break;
-                    case ZombieType.window:
-                        attackTime += Time.deltaTime;
-                        if (attackTime >= attackSpeed)
-                        {
-                            // TODO: Play attack animation
-                            // TODO: Stun player
-                        }
-                        break;
-                }
+                case ZombieType.falling:
+                    // TODO: Make function that checks if there are already 3 zombies hanging on the cart and if not it adds a new one
+                    if (true)
+                    {
+                        Destroy(gameObject);
+                    }
+                    break;
+                case ZombieType.window:
+                    if (attackTime >= attackSpeed)
+                    {
+                        // TODO: Play attack animation
+                        if (collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement player))
+                            player.GetStunned();
+                        attackTime = 0f;
+                    }
+                    break;
             }
-            else
-                attackTime = 0;
+            
         }
     }
 }

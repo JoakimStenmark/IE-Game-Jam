@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WindowManager : MonoBehaviour
 {
+    public static WindowManager instance;
+
     public GameObject windowPrefab;
     public GameObject[,] windows;
     public int windowRowAmount;
@@ -13,6 +15,10 @@ public class WindowManager : MonoBehaviour
     public float ySpacing;
 
 
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
