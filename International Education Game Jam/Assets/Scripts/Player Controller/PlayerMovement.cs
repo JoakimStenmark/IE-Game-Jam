@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
 
     //--- Player : Animation --- 
 
+    
+
     //--- Window : State ---
     private Window window;
     public bool canClean = false;
@@ -61,4 +63,12 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRB.velocity = playerDirection * speed;
     }
+
+    public void GetStunned()
+    {
+
+    }
+
+
+
 }
