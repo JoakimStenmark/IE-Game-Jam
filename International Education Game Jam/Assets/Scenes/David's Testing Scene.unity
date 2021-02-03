@@ -1052,8 +1052,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2105713330}
   - component: {fileID: 2105713331}
+  - component: {fileID: 2105713332}
   m_Layer: 0
-  m_Name: Score Manager
+  m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1067,7 +1068,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105713329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1086,3 +1087,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 637838027}
+--- !u!114 &2105713332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105713329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01df9bee67cc3f24a97af75cb6ca9605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombiePrefab: {fileID: 4956047892146240509, guid: f2c73b75c02a2f841b64410740dacb71, type: 3}
+  timeBetweenSpawn: {x: 2.5, y: 5}
+  spawnXClamp: {x: -8, y: 8}
+  zombieData: {fileID: 11400000, guid: efe6cbc1cbd52b649a1d5ee50637ea5b, type: 2}
