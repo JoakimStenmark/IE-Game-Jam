@@ -9,17 +9,14 @@ public class WindowManager : MonoBehaviour
     public int windowRowAmount;
     public int windowColumnAmount;
 
-    public float spacing;
+    public float xSpacing;
+    public float ySpacing;
+
 
 
     void Start()
     {
         SpawnNewWindows(Vector2.zero);
-
-        if (AreAllWindowsClean())
-        {
-            GameManager.instance.GameOver();
-        }
 
     }
 
@@ -31,7 +28,7 @@ public class WindowManager : MonoBehaviour
         {
             for (int x = 0; x < windowRowAmount; x++)
             {
-                windows[x, y] = Instantiate(windowPrefab, new Vector3(pos.x + x * spacing, pos.y + y * spacing, 0), Quaternion.identity);
+                windows[x, y] = Instantiate(windowPrefab, new Vector3(pos.x + x * xSpacing, pos.y + y * ySpacing, 0), Quaternion.identity, transform);
             }
         }
     }
