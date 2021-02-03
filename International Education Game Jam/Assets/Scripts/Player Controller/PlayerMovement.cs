@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //--- Player : Movement ---
-    [SerializeField] private float speed;
+    private float speed;
+    [SerializeField] private float horizontalSpeed;
+    [SerializeField] private float upSpeed;
+    [SerializeField] private float downSpeed;
+
     private Rigidbody2D playerRB;
     private Vector2 playerDirection;
 
@@ -20,10 +24,19 @@ public class PlayerMovement : MonoBehaviour
 
         playerDirection.x = Input.GetAxisRaw("Horizontal");
         playerDirection.y = Input.GetAxisRaw("Vertical");
-        
-        if(playerDirection.x != 0)
+
+        if (playerDirection.x != 0)
         {
             playerDirection.y = 0;
+            speed = horizontalSpeed;
+        }
+
+        if(playerDirection.y == 1)
+        {
+            speed = upSpeed;
+        }else if(playerDirection.y == -1)
+        {
+            speed = downSpeed;
         }
     }
 
