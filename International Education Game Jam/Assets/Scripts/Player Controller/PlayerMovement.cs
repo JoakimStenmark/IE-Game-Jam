@@ -134,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
     {
         windowToClean = collision.GetComponent<Window>();
     }
+
     private void PlayRightAnimation()
     {
         throw new NotImplementedException();
