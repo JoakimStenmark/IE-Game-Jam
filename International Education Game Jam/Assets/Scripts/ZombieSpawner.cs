@@ -27,13 +27,12 @@ public class ZombieSpawner : MonoBehaviour
             {
                 case 1:
                     zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.falling), Quaternion.identity);
-                    zombieObject.GetComponent<Zombie>().Setup(ZombieType.falling, zombieData.attackRange, zombieData.attackSpeed, zombieData.fallSpeed);
+                    zombieObject.GetComponent<Zombie>().Setup(ZombieType.falling, zombieData.attackSpeed, zombieData.fallSpeed);
                     break;
 
                 case 2:
-                    // REMINDER: Revert to window
-                    zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.falling), Quaternion.identity);
-                    zombieObject.GetComponent<Zombie>().Setup(ZombieType.falling, zombieData.attackRange, zombieData.attackSpeed, zombieData.fallSpeed);
+                    zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.window), Quaternion.identity);
+                    zombieObject.GetComponent<Zombie>().Setup(ZombieType.window, zombieData.attackSpeed, zombieData.fallSpeed);
                     break;
             }
         }
@@ -48,7 +47,7 @@ public class ZombieSpawner : MonoBehaviour
                 return new Vector2(Random.Range(spawnXClamp.x, spawnXClamp.y), transform.position.y);
                 break;
             case ZombieType.window:
-                //TODO: Return random window position
+                return WindowManager.instance.GetSpawnableWindow().transform.position;
                 break;
         }
         Debug.LogError("There was no zombie type given.");
