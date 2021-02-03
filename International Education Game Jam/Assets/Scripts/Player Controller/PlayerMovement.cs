@@ -13,10 +13,17 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRB;
     private Vector2 playerDirection;
 
+    //--- Player : Animation --- 
+
+    //--- Window : State ---
+    private Window window;
+    public bool canClean = false;
+
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        window = FindObjectOfType<Window>();
     }
 
     void Update()
@@ -38,6 +45,16 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = downSpeed;
         }
+
+        if (canClean)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                window.howDirty--;
+                window.WindowState();
+            }
+        }
+
     }
 
     private void FixedUpdate()
