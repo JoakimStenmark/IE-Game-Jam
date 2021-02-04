@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 4956047892146240510}
   - component: {fileID: 4956047892146240511}
   - component: {fileID: 4956047892146240508}
+  - component: {fileID: 1130177892}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -126,7 +127,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956e82722b078a848993e642782f0a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   indicatorPrefab: {fileID: 5637402650273770608, guid: d46ce24775ca115428c2334773a6d450, type: 3}
   fallingIndicatorTrans: {fileID: 3959638411524926355}
   indicator: {fileID: 0}
   indicatorShowTime: 2
+--- !u!61 &1130177892
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4956047892146240509}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

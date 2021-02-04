@@ -180,6 +180,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9e2fb81faac635448a0d8e6362befb9, type: 3}
+--- !u!1 &205130129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3076374625141434793, guid: 7489f22577d76ed45abea83d7e20964d, type: 3}
+  m_PrefabInstance: {fileID: 3076374625470029927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &205130132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205130129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01df9bee67cc3f24a97af75cb6ca9605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombiePrefab: {fileID: 4956047892146240509, guid: f2c73b75c02a2f841b64410740dacb71, type: 3}
+  timeBetweenSpawn: {x: 1, y: 2}
+  spawnXClamp: {x: 0, y: 13}
+  zombieData: {fileID: 11400000, guid: efe6cbc1cbd52b649a1d5ee50637ea5b, type: 2}
 --- !u!1 &333766603
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +458,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindowManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1305152936784573584, guid: 49907d956b1cbb84e9ec0cf8180ecffd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1305152936784573590, guid: 49907d956b1cbb84e9ec0cf8180ecffd, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -498,10 +523,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2014497724074366931, guid: 7489f22577d76ed45abea83d7e20964d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3076374625141434792, guid: 7489f22577d76ed45abea83d7e20964d, type: 3}
       propertyPath: windowManager
       value: 
@@ -520,7 +541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3076374625141434807, guid: 7489f22577d76ed45abea83d7e20964d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3076374625141434807, guid: 7489f22577d76ed45abea83d7e20964d, type: 3}
       propertyPath: m_LocalPosition.z

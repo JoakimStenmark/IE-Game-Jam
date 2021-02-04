@@ -30,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRB;
     private Vector2 playerDirection;
 
+    //--- Player : Stunned ---
+    private bool isStunned = false;
+    private float stunTime;
+    [SerializeField] private float maxStunTime;
+
     //--- Player : Animation --- 
     [SerializeField] private float cleanSpeed;
     private float cleanTime;
@@ -76,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (canClean && Input.GetKey(KeyCode.Space) && (int)itemHeld < 3)
         {
-            if(cleanTime >= cleanSpeed)
+            if (cleanTime >= cleanSpeed)
             {
                 windowToClean.CleanWindowCombo();
                 PlayRightAnimation();
@@ -99,6 +104,20 @@ public class PlayerMovement : MonoBehaviour
             currentItem = 3;
             ItemSelected();
         }
+
+        if (isStunned)
+        {
+            stunTime += Time.deltaTime;
+            if(stunTime <= maxStunTime)
+            {
+                horizontalSpeed = 4;
+                upSpeed = 1;
+                downSpeed = 2;
+
+                stunTime = 0;
+                isStunned = false;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -108,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void GetStunned()
     {
-
+        isStunned = true;
     }
 
     private void ItemSelected()
