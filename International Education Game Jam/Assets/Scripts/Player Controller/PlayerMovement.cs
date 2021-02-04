@@ -73,12 +73,12 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         windowToClean = FindObjectOfType<Window>();
         
-        itemHeld = ItemHeld.Nothing;
+        itemHeld = ItemHeld.Wiper;
 
         horizontalSpeed = data.regularSpeed;
         upSpeed = data.regularUpSpeed;
         downSpeed = data.regularDownSpeed;
-        currentItem = 0;
+        currentItem = 1;
         
         playerAnimationScript = GetComponent<PlayerAnimationScript>();
     }
