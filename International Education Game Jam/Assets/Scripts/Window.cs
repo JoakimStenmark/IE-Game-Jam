@@ -10,7 +10,6 @@ public class Window : MonoBehaviour
     public int howDirty = 0; /*if this scale is a 4 (0 - 3)it is really dirty --- if it is at 0 it is clean*/
 
     private PlayerMovement player;
-    public bool isSprayed = false;
 
     public bool hasZombie = false;
     [SerializeField] private Sprite clean, dirty, broken;
@@ -44,6 +43,7 @@ public class Window : MonoBehaviour
         if (howDirty <= 0)
         {
             howDirty = 0;
+            player.canClean = false;
         }
         if (hasZombie)
         {
@@ -89,15 +89,8 @@ public class Window : MonoBehaviour
             howDirty--;
             ScoreManager.instance.ModifyScore(1000);
             WindowState();
-            isSprayed = true;
         }
-        else if (isSprayed == true && player.currentItem == 1)
-        {
-            howDirty = 0;
-            ScoreManager.instance.ModifyScore(5000);
-            WindowState();
-        }
-        else if(isSprayed == false && player.currentItem == 1)
+        else if(player.currentItem == 1)
         {
             ScoreManager.instance.ModifyScore(1000);
             howDirty--;
