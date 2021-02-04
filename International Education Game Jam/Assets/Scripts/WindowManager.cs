@@ -70,13 +70,13 @@ public class WindowManager : MonoBehaviour
                 }
             }
         }
-
-        if (cleanWindows[0] == null)
+        
+        if (cleanWindows.Count == 0)
         {
             return null;
         }
 
-        return cleanWindows[Random.Range(0, cleanWindows.Capacity)];
+        return cleanWindows[Random.Range(0, cleanWindows.Count)];
 
     }
 }
