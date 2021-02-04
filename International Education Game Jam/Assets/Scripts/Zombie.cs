@@ -60,7 +60,7 @@ public class Zombie : MonoBehaviour
             if (indicatorTime >= indicatorShowTime)
             {
                 indicatorIsShowing = false;
-                indicator.SetActive(false);
+                Destroy(indicator);
             }
         }
         else
