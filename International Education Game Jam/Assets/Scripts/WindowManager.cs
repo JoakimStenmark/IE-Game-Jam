@@ -14,6 +14,8 @@ public class WindowManager : MonoBehaviour
     public float xSpacing;
     public float ySpacing;
 
+    [SerializeField] private Vector2 firstWindowLoc;
+
 
     private void Awake()
     {
@@ -22,8 +24,7 @@ public class WindowManager : MonoBehaviour
 
     void Start()
     {
-        SpawnNewWindows(Vector2.zero);
-
+        SpawnNewWindows(firstWindowLoc);
     }
 
     private void SpawnNewWindows(Vector3 pos)
@@ -55,16 +56,15 @@ public class WindowManager : MonoBehaviour
         return true;
     }
 
-    public GameObject GetSpawnableWindow()
+    public GameObject GetSpawnableWindow(bool setHasZombieTrue = false)
     {
-
         List<GameObject> cleanWindows = new List<GameObject>();
 
         for (int y = 0; y < windowColumnAmount; y++)
         {
             for (int x = 0; x < windowRowAmount; x++)
             {
-                if (!windows[x, y].GetComponent<Window>().isDirty)
+                if (!windows[x, y].GetComponent<Window>().isDirty && !windows[x, y].GetComponent<Window>().hasZombie)
                 {
                     cleanWindows.Add(windows[x, y]);
                 }
@@ -72,11 +72,12 @@ public class WindowManager : MonoBehaviour
         }
 
         if (cleanWindows.Count == 0)
-        {
             return null;
-        }
 
-        return cleanWindows[Random.Range(0, cleanWindows.Count)];
+        int randomWindow = Random.Range(0, cleanWindows.Count);
+        if (setHasZombieTrue)
+            cleanWindows[randomWindow].GetComponent<Window>().hasZombie = true;
+        return cleanWindows[randomWindow];
 
     }
 }
