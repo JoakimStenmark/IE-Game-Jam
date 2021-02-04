@@ -527,6 +527,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &767776202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 181969689131018275, guid: 7489f22577d76ed45abea83d7e20964d, type: 3}
+  m_PrefabInstance: {fileID: 3076374625470029927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1250985397
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,6 +891,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3076374625141434792, guid: 7489f22577d76ed45abea83d7e20964d, type: 3}
+      propertyPath: restartButton
+      value: 
+      objectReference: {fileID: 767776202}
     - target: {fileID: 3076374625141434792, guid: 7489f22577d76ed45abea83d7e20964d, type: 3}
       propertyPath: windowManager
       value: 

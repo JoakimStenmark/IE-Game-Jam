@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public float positiveEndThreshold = 50000;
     public GameObject positiveEndScreen;
     public GameObject negativeEndScreen;
+    public GameObject restartButton;
 
     public WindowManager windowManager;
 
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
             positiveEndScreen.SetActive(true);
         else
             negativeEndScreen.SetActive(true);
+        restartButton.SetActive(true);
         Time.timeScale = 0;
     }
 
