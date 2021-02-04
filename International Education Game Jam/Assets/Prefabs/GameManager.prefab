@@ -872,6 +872,7 @@ MonoBehaviour:
   positiveEndThreshold: 50000
   positiveEndScreen: {fileID: 579602345}
   negativeEndScreen: {fileID: 828250020}
+  restartButton: {fileID: 0}
   windowManager: {fileID: 0}
   numberOfScreens: 0
   spaceBetweenScreens: 10

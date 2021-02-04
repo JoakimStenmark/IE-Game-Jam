@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
         cleanTime += Time.deltaTime;
 
-        if (hangingZombieIndex != 0)
+        if (hangingZombieIndex == 0)
         {
             if (canClean && Input.GetKey(KeyCode.Space) && (int)itemHeld < 3)
             {
@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         hangingHitTime += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.E) && itemHeld == ItemHeld.Broom)
+        if (Input.GetKeyDown(KeyCode.Space) && itemHeld == ItemHeld.Broom)
         {
             if (hangingHitTime >= timeToHitHangingZombie)
             {

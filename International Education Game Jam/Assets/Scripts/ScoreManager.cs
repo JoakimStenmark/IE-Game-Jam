@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
 
         if (setPoints >= changePointSpeed)
         {
-            totalBonusPoints -= 100;
+            totalBonusPoints -= 1000;
             if(totalBonusPoints <= 100)
             {
                 totalBonusPoints = 0;
