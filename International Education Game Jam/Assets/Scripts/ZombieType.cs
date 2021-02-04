@@ -5,5 +5,6 @@ using UnityEngine;
 public enum ZombieType
 {
     falling,
-    window
+    window,
+    zombieCheck
 }

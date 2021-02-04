@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Destroy(windowZombie);
                     windowZombie = null;
+                    windowToClean.WindowState();
                 }
             }
         }

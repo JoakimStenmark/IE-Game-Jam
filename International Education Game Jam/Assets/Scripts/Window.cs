@@ -48,6 +48,7 @@ public class Window : MonoBehaviour
         if (hasZombie)
         {
             spriteRenderer.sprite = broken;
+            spriteRenderer.color = new Color32(255, 255, 255, 255);
         }
         else
         {
@@ -56,24 +57,25 @@ public class Window : MonoBehaviour
                 case 0:
                     //Send a signal to Joakims script = "WINDOW IS CLEAN" change bool in that script.
                     spriteRenderer.sprite = clean;
+                    spriteRenderer.color = new Color32(255, 255, 255, 255);
                     isDirty = false;
                     break;
                 case 1:
                     //Set Window dirty sprite to very see through
                     spriteRenderer.sprite = dirty;
-                    spriteRenderer.color = new Color(255, 255, 255, 33);
+                    spriteRenderer.color = new Color32(255, 255, 255, 85);
                     isDirty = true;
                     break;
                 case 2:
                     //Set Window dirty sprite to see through
                     spriteRenderer.sprite = dirty;
-                    spriteRenderer.color = new Color(255, 255, 255, 66);
+                    spriteRenderer.color = new Color32(255, 255, 255, 170);
                     isDirty = true;
                     break;
                 case 3:
                     //Set Window dirty sprite to dirty
                     spriteRenderer.sprite = dirty;
-                    spriteRenderer.color = new Color(255, 255, 255, 100);
+                    spriteRenderer.color = new Color32(255, 255, 255, 255);
                     isDirty = true;
                     break;
             }
@@ -102,5 +104,4 @@ public class Window : MonoBehaviour
             WindowState();
         }
     }
-
 }

@@ -14,6 +14,8 @@ public class WindowManager : MonoBehaviour
     public float xSpacing;
     public float ySpacing;
 
+    [SerializeField] private Vector2 firstWindowLoc;
+
 
     private void Awake()
     {
@@ -22,8 +24,7 @@ public class WindowManager : MonoBehaviour
 
     void Start()
     {
-        SpawnNewWindows(Vector2.zero);
-
+        SpawnNewWindows(firstWindowLoc);
     }
 
     private void SpawnNewWindows(Vector3 pos)
@@ -73,7 +74,10 @@ public class WindowManager : MonoBehaviour
         if (cleanWindows.Count == 0)
             return null;
 
-        return cleanWindows[Random.Range(0, cleanWindows.Count)];
+        int randomWindow = Random.Range(0, cleanWindows.Count);
+        if (setHasZombieTrue)
+            cleanWindows[randomWindow].GetComponent<Window>().hasZombie = true;
+        return cleanWindows[randomWindow];
 
     }
 }

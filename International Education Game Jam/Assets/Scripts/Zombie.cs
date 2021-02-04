@@ -45,6 +45,7 @@ public class Zombie : MonoBehaviour
         }
         else
         {
+            GetComponent<SpriteRenderer>().sortingOrder = 2;
             GetComponent<Animator>().SetBool("isFalling", false);
             indicator = Instantiate(indicatorPrefab, transform.position, Quaternion.identity);
         }

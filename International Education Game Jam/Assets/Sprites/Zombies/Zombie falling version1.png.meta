@@ -100,10 +100,10 @@ TextureImporter:
       name: Zombie falling version1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 228
-        height: 144
+        x: 30
+        y: 38
+        width: 180
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,10 +121,10 @@ TextureImporter:
       name: Zombie falling version1_1
       rect:
         serializedVersion: 2
-        x: 228
-        y: 0
-        width: 228
-        height: 144
+        x: 237
+        y: 38
+        width: 180
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
   m_Color: {r: 0, g: 0.84629774, b: 1, a: 1}
   m_FlipX: 0
@@ -99,6 +99,10 @@ MonoBehaviour:
   isDirty: 0
   howDirty: 0
   isSprayed: 0
+  hasZombie: 0
+  clean: {fileID: 21300000, guid: a819d1c38c54f88468171fae8bca3596, type: 3}
+  dirty: {fileID: 21300000, guid: 53b4105f837fea2428585c9fe4396f0e, type: 3}
+  broken: {fileID: 21300000, guid: ad1775efe3b96bf469df8c64eabf01b6, type: 3}
 --- !u!61 &911754699
 BoxCollider2D:
   m_ObjectHideFlags: 0

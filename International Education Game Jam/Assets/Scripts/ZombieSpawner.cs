@@ -8,6 +8,8 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private Vector2 timeBetweenSpawn, spawnXClamp;
     [SerializeField] private ZombieData zombieData;
 
+    [SerializeField] private float windowZombieChance = 30f;
+
     void Start()
     {
         StartCoroutine(ZombieSpawn());
@@ -22,18 +24,18 @@ public class ZombieSpawner : MonoBehaviour
 
             GameObject zombieObject;
 
-            int randomZombieSpawn = Random.Range(1, 3);
-            switch (randomZombieSpawn)
+            bool spawnWindow = Random.Range(1, 100) <= windowZombieChance ? true : false;
+            if (spawnWindow)
             {
-                case 1:
-                    zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.falling), Quaternion.identity);
-                    zombieObject.GetComponent<Zombie>().Setup(ZombieType.falling, zombieData.attackSpeed, zombieData.fallSpeed);
+                if (GetRandomSpawnLocation(ZombieType.zombieCheck) == Vector2.zero)
                     break;
-
-                case 2:
-                    zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.window), Quaternion.identity);
-                    zombieObject.GetComponent<Zombie>().Setup(ZombieType.window, zombieData.attackSpeed, zombieData.fallSpeed);
-                    break;
+                zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.window), Quaternion.identity);
+                zombieObject.GetComponent<Zombie>().Setup(ZombieType.window, zombieData.attackSpeed, zombieData.fallSpeed);
+            }
+            else
+            {
+                zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.falling), Quaternion.identity);
+                zombieObject.GetComponent<Zombie>().Setup(ZombieType.falling, zombieData.attackSpeed, zombieData.fallSpeed);
             }
         }
     }
@@ -45,12 +47,18 @@ public class ZombieSpawner : MonoBehaviour
         {
             case ZombieType.falling:
                 return new Vector2(Random.Range(spawnXClamp.x, spawnXClamp.y), transform.position.y);
-                break;
             case ZombieType.window:
-                return WindowManager.instance.GetSpawnableWindow(true).transform.position;
+                GameObject tempObject = WindowManager.instance.GetSpawnableWindow(true);
+                if (tempObject)
+                    return tempObject.transform.position;
+                break;
+            case ZombieType.zombieCheck:
+                GameObject testObject = WindowManager.instance.GetSpawnableWindow();
+                if (testObject)
+                    return testObject.transform.position;
                 break;
         }
-        Debug.LogError("There was no zombie type given.");
+        Debug.Log("There was no zombie type given.");
         return Vector2.zero;
     }
 }
