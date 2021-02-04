@@ -9,6 +9,8 @@ public class ZombieSpawner : MonoBehaviour
     [SerializeField] private ZombieData zombieData;
 
     [SerializeField] private float windowZombieChance = 30f;
+    [SerializeField] private int maxWindowZombies;
+    private int amountOfWindowZombies = 0;
 
     void Start()
     {
@@ -23,8 +25,9 @@ public class ZombieSpawner : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(timeBetweenSpawn.x, timeBetweenSpawn.y));
 
             GameObject zombieObject;
-
             bool spawnWindow = Random.Range(1, 100) <= windowZombieChance ? true : false;
+            if (amountOfWindowZombies >= maxWindowZombies)
+                spawnWindow = false;
             if (spawnWindow)
             {
                 if (GetRandomSpawnLocation(ZombieType.zombieCheck) == Vector2.zero)
@@ -32,6 +35,7 @@ public class ZombieSpawner : MonoBehaviour
                 zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.window), Quaternion.identity);
                 zombieObject.GetComponent<Zombie>().Setup(ZombieType.window, zombieData.attackSpeed, zombieData.fallSpeed);
                 MusicFXScript.instance.PlaySoundEffect(Random.Range(0,5));
+                amountOfWindowZombies++;
             }
             else
             {

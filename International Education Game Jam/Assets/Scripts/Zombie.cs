@@ -18,6 +18,7 @@ public class Zombie : MonoBehaviour
     private bool indicatorIsShowing = true;
     [SerializeField] private float indicatorShowTime;
     private float indicatorTime;
+    private Animator animator;
 
     // Sets up all variable for the zombie
     public void Setup(ZombieType _type, float _attackSpeed, float _fallSpeed)
@@ -25,7 +26,7 @@ public class Zombie : MonoBehaviour
         type = _type;
         attackSpeed = _attackSpeed;
         fallSpeed = _fallSpeed;
-
+        animator = GetComponent<Animator>();
         // Instantiate an indicatior that is turned off after a few seconds
         if (type == ZombieType.falling)
         {
@@ -60,7 +61,7 @@ public class Zombie : MonoBehaviour
             if (indicatorTime >= indicatorShowTime)
             {
                 indicatorIsShowing = false;
-                indicator.SetActive(false);
+                Destroy(indicator);
             }
         }
         else
@@ -94,12 +95,22 @@ public class Zombie : MonoBehaviour
                     if (attackTime >= attackSpeed)
                     {
                         // TODO: Play attack animation
+                        animator.SetBool("isGrabbing", true);
                         if (collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement player))
                             player.GetStunned();
                         attackTime = 0f;
                     }
                     break;
             }
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            animator.SetBool("isGrabbing", false);
 
         }
     }
