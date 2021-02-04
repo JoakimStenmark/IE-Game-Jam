@@ -14,7 +14,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     private int currentScore = 0;
-    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     // Modify the current score with a given modification
     public void ModifyScore(int modification)
