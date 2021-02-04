@@ -16,7 +16,9 @@ public enum PlayerState
     Wiping = 0,
     Spraying,
     WhackingBroom,
-    BeingHit
+    BeingHit,
+    Idle,
+    Repairing
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -40,10 +42,11 @@ public class PlayerMovement : MonoBehaviour
     //--- Player : Animation --- 
     [SerializeField] private float cleanSpeed;
     private float cleanTime;
-
+    private PlayerAnimationScript playerAnimationScript;
+    public PlayerState playerState;
 
     //--- Player : Item Select ---
-    [SerializeField] private ItemHeld itemHeld;
+    public ItemHeld itemHeld;
     public int currentItem = 1;
 
     //--- Window : State ---
@@ -55,7 +58,11 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody2D>();
         windowToClean = FindObjectOfType<Window>();
+        
         itemHeld = ItemHeld.Nothing;
+        currentItem = 0;
+        
+        playerAnimationScript = GetComponent<PlayerAnimationScript>();
     }
 
     void Update()
@@ -68,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
             playerDirection.y = 0;
             speed = horizontalSpeed;
         }
+
+       
 
         if (playerDirection.y == 1)
         {
@@ -86,7 +95,6 @@ public class PlayerMovement : MonoBehaviour
             if (cleanTime >= cleanSpeed)
             {
                 windowToClean.CleanWindowCombo();
-                PlayRightAnimation();
                 cleanTime = 0;
             }
         }
@@ -158,9 +166,9 @@ public class PlayerMovement : MonoBehaviour
         windowToClean = collision.GetComponent<Window>();
     }
 
-    private void PlayRightAnimation()
+    public Vector2 ReturnDirection()
     {
-
+        return playerDirection;
     }
 
 }
