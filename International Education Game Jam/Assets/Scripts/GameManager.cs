@@ -47,8 +47,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game is Over");
         gameOverScreen.SetActive(true);
         Time.timeScale = 0;
-
-        
     }
 
     public void RestartGame()
