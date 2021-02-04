@@ -833,7 +833,6 @@ GameObject:
   - component: {fileID: 3076374625141434792}
   - component: {fileID: 205130132}
   - component: {fileID: 205130133}
-  - component: {fileID: 6687933956036712030}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -893,6 +892,7 @@ MonoBehaviour:
   spawnXClamp: {x: 0, y: 13}
   zombieData: {fileID: 11400000, guid: efe6cbc1cbd52b649a1d5ee50637ea5b, type: 2}
   windowZombieChance: 30
+  maxWindowZombies: 6
 --- !u!114 &205130133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,20 +909,3 @@ MonoBehaviour:
   totalScore: {fileID: 1419584811}
   changePointSpeed: 1
   totalBonusPoints: 100000
---- !u!114 &6687933956036712030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3076374625141434793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01df9bee67cc3f24a97af75cb6ca9605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zombiePrefab: {fileID: 4956047892146240509, guid: f2c73b75c02a2f841b64410740dacb71, type: 3}
-  timeBetweenSpawn: {x: 1, y: 2}
-  spawnXClamp: {x: 0, y: 13}
-  zombieData: {fileID: 11400000, guid: efe6cbc1cbd52b649a1d5ee50637ea5b, type: 2}
-  windowZombieChance: 30
