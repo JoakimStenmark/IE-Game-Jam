@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: WindowManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -46,4 +46,6 @@ MonoBehaviour:
   windowPrefab: {fileID: 8511079259171537164, guid: 1074e53f639c88642b753ce93ca95ece, type: 3}
   windowRowAmount: 7
   windowColumnAmount: 4
-  spacing: 2
+  xSpacing: 2
+  ySpacing: 2
+  firstWindowLoc: {x: 0, y: 0}

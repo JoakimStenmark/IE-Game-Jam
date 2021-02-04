@@ -430,10 +430,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1305152936784573584, guid: 49907d956b1cbb84e9ec0cf8180ecffd, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 1305152936784573584, guid: 49907d956b1cbb84e9ec0cf8180ecffd, type: 3}
       propertyPath: m_Name
       value: WindowManager
       objectReference: {fileID: 0}
@@ -480,14 +476,6 @@ PrefabInstance:
     - target: {fileID: 1305152936784573590, guid: 49907d956b1cbb84e9ec0cf8180ecffd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1305152936784573591, guid: 49907d956b1cbb84e9ec0cf8180ecffd, type: 3}
-      propertyPath: xSpacing
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1305152936784573591, guid: 49907d956b1cbb84e9ec0cf8180ecffd, type: 3}
-      propertyPath: ySpacing
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49907d956b1cbb84e9ec0cf8180ecffd, type: 3}

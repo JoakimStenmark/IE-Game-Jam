@@ -214,17 +214,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbc08e500d177b4d868f9bcb3259f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: d2dcc253e96ea7148ba7cc3d0e9e1986, type: 2}
   horizontalSpeed: 7
   upSpeed: 2.5
   downSpeed: 4
-  xClamp: {x: 0, y: 0}
-  yClamp: {x: 0, y: 0}
+  xClamp: {x: -8, y: 8}
+  yClamp: {x: -8, y: 8}
   maxStunTime: 0
+  hangingZombies: []
+  timeToHitHangingZombie: 0
   cleanSpeed: 1.5
   playerState: 0
   itemHeld: 0
   currentItem: 1
   canClean: 0
+  greenSprite: {fileID: 0}
+  redSprite: {fileID: 0}
 --- !u!50 &1467045089
 Rigidbody2D:
   serializedVersion: 4
@@ -305,7 +310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467045087}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.05, y: 1.48, z: 0}
+  m_LocalPosition: {x: -0.18, y: 1.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -368,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9462cf52bbcee2f438dd16caf8786916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxWhipingAnimTime: 2
 --- !u!1 &1654096717
 GameObject:
   m_ObjectHideFlags: 0
