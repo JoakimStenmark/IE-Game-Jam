@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: 60e994114bcd9bd43ac4f96a55ca147b
+guid: 33434267c0ef97f4f82b95b7f73b16de
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4552165493887674882
-    second: victoryscreen_positive_spritesheet_0
+      213: -4430512510137209366
+    second: zombie_window_arm_spritesheet_0
   - first:
-      213: -8188677463753246720
-    second: victoryscreen_positive_spritesheet_1
+      213: -3917669835346795818
+    second: zombie_window_arm_spritesheet_1
   - first:
-      213: 8360811926754665194
-    second: victoryscreen_positive_spritesheet_2
+      213: -3815665254304187283
+    second: zombie_window_arm_spritesheet_2
   - first:
-      213: -9189550446214211345
-    second: victoryscreen_positive_spritesheet_3
-  - first:
-      213: -7422202335697228753
-    second: victoryscreen_positive_spritesheet_4
-  - first:
-      213: 2353494707041047834
-    second: victoryscreen_positive_spritesheet_5
+      213: -1964221255166121055
+    second: zombie_window_arm_spritesheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,7 +44,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -83,7 +77,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -95,7 +89,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -109,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: victoryscreen_positive_spritesheet_0
+      name: zombie_window_arm_spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1080
-        width: 1920
-        height: 1080
+        y: 220
+        width: 160
+        height: 220
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,20 +117,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20a27f5f56a8c2f30800000000000000
-      internalID: 4552165493887674882
+      spriteID: aede85c8858a382c0800000000000000
+      internalID: -4430512510137209366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: victoryscreen_positive_spritesheet_1
+      name: zombie_window_arm_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 1920
-        y: 1080
-        width: 1920
-        height: 1080
+        x: 160
+        y: 220
+        width: 160
+        height: 220
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,41 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 008bdb07b39fb5e80800000000000000
-      internalID: -8188677463753246720
+      spriteID: 6d224ec9a04a1a9c0800000000000000
+      internalID: -3917669835346795818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: victoryscreen_positive_spritesheet_2
-      rect:
-        serializedVersion: 2
-        x: 3840
-        y: 1080
-        width: 1920
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae2af006622970470800000000000000
-      internalID: 8360811926754665194
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: victoryscreen_positive_spritesheet_3
+      name: zombie_window_arm_spritesheet_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 160
+        height: 220
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe89ed7be88287080800000000000000
-      internalID: -9189550446214211345
+      spriteID: d6cf56fdaa80c0bc0800000000000000
+      internalID: -3815665254304187283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: victoryscreen_positive_spritesheet_4
+      name: zombie_window_arm_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 1920
+        x: 160
         y: 0
-        width: 1920
-        height: 1080
+        width: 160
+        height: 220
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,29 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2c21b9dc4a0ff890800000000000000
-      internalID: -7422202335697228753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: victoryscreen_positive_spritesheet_5
-      rect:
-        serializedVersion: 2
-        x: 3840
-        y: 0
-        width: 1920
-        height: 1080
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1591f977fa49a020800000000000000
-      internalID: 2353494707041047834
+      spriteID: 1ab2d81ec2fadb4e0800000000000000
+      internalID: -1964221255166121055
       vertices: []
       indices: 
       edges: []
