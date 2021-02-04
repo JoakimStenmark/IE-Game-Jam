@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
 
     //--- Score : Timer ---
     [SerializeField] private TMP_Text pointsBonus;
+    [SerializeField] private TMP_Text totalScore;
+
     [SerializeField] private int changePointSpeed;
     [SerializeField] private float totalBonusPoints;
 
@@ -18,6 +20,7 @@ public class ScoreManager : MonoBehaviour
     private bool willGetBonus = true;
 
     private GameManager gameRef;
+    private int currentScore = 0;
 
     //--- Score : Timer : Add Score From Time ---
 
@@ -29,6 +32,7 @@ public class ScoreManager : MonoBehaviour
     private void Start()
     {
         gameRef = GetComponent<GameManager>();
+        ModifyScore(0);
     }
 
     private void Update()
@@ -50,19 +54,15 @@ public class ScoreManager : MonoBehaviour
         }
 
         TotalBonusPoints();
-
-
     }
 
 
-    private int currentScore = 0;
-    [SerializeField] private TextMeshProUGUI scoreText;
 
     // Modify the current score with a given modification
     public void ModifyScore(int modification)
     {
         currentScore += modification;
-        scoreText.text = "Score: " + currentScore.ToString("0000");
+        totalScore.text = "Total Score : " + currentScore.ToString("000000");
     }
 
     // Returns the current score the player has
