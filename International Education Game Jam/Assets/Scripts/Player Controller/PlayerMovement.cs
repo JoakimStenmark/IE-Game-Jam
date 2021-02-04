@@ -24,7 +24,9 @@ public enum PlayerState
 public class PlayerMovement : MonoBehaviour
 {
     //--- Player : Movement ---
+    [SerializeField] private PlayerData data;
     private float speed;
+
     [SerializeField] private float horizontalSpeed;
     [SerializeField] private float upSpeed;
     [SerializeField] private float downSpeed;
@@ -36,8 +38,14 @@ public class PlayerMovement : MonoBehaviour
 
     //--- Player : Stunned ---
     private bool isStunned = false;
-    private float stunTime;
+    private float stunTime = 0f;
     [SerializeField] private float maxStunTime;
+
+    //--- Player: Hanging Zombies ---
+    private int hangingZombieIndex = 0;
+    [SerializeField] private GameObject[] hangingZombies;
+    private float hangingHitTime;
+    [SerializeField] private float timeToHitHangingZombie;
 
     //--- Player : Animation --- 
     [SerializeField] private float cleanSpeed;
@@ -60,6 +68,10 @@ public class PlayerMovement : MonoBehaviour
         windowToClean = FindObjectOfType<Window>();
         
         itemHeld = ItemHeld.Nothing;
+
+        horizontalSpeed = data.regularSpeed;
+        upSpeed = data.regularUpSpeed;
+        downSpeed = data.regularDownSpeed;
         currentItem = 0;
         
         playerAnimationScript = GetComponent<PlayerAnimationScript>();
@@ -87,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
             speed = downSpeed;
         }
 
-
         cleanTime += Time.deltaTime;
 
         if (canClean && Input.GetKey(KeyCode.Space) && (int)itemHeld < 3)
@@ -98,6 +109,17 @@ public class PlayerMovement : MonoBehaviour
                 cleanTime = 0;
             }
         }
+
+        hangingHitTime += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (hangingHitTime >= timeToHitHangingZombie)
+            {
+                RemoveHangingZombie();
+                hangingHitTime = 0f;
+            }
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -117,15 +139,31 @@ public class PlayerMovement : MonoBehaviour
 
         if (isStunned)
         {
-            horizontalSpeed = 4;
-            upSpeed = 1;
-            downSpeed = 2;
+            horizontalSpeed = data.stunnedSpeed;
+            upSpeed = data.stunnedUpSpeed;
+            downSpeed = data.stunnedDownSpeed;
 
             stunTime += Time.deltaTime;
-            if(stunTime >= maxStunTime)
+            if (stunTime >= maxStunTime)
             {
-                stunTime = 0;
                 isStunned = false;
+
+                if (hangingZombieIndex == 0)
+                {
+                    horizontalSpeed = data.regularSpeed;
+                    upSpeed = data.regularUpSpeed;
+                    downSpeed = data.regularDownSpeed;
+                }
+                else
+                {
+                    horizontalSpeed = data.regularSpeed - hangingZombieIndex * data.hangingReductionHorizontal;
+                    upSpeed = data.regularUpSpeed - hangingZombieIndex * data.hangingReductionVertical;
+                    downSpeed = data.regularDownSpeed - hangingZombieIndex * data.hangingReductionVertical;
+
+                    upSpeed = Mathf.Clamp(upSpeed, 0, 10000);
+                }
+
+                stunTime = 0;
             }
         }
 
@@ -135,6 +173,38 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         playerRB.velocity = playerDirection * speed;
+    }
+
+    public bool AddHangingZombie()
+    {
+        if (hangingZombieIndex >= 3)
+            return false;
+
+        hangingZombies[hangingZombieIndex].SetActive(true);
+        hangingZombieIndex++;
+
+        horizontalSpeed -= data.hangingReductionHorizontal;
+        upSpeed -= data.hangingReductionVertical;
+        downSpeed -= data.hangingReductionVertical;
+
+        upSpeed = Mathf.Clamp(upSpeed, 0, 10000);
+
+        return true;
+    }
+
+    public void RemoveHangingZombie()
+    {
+        if (hangingZombieIndex <= 0)
+            return;
+
+        hangingZombies[hangingZombieIndex - 1].SetActive(false);
+        hangingZombieIndex--;
+
+        horizontalSpeed += data.hangingReductionHorizontal;
+        upSpeed += data.hangingReductionVertical;
+        downSpeed += data.hangingReductionVertical;
+
+        upSpeed = Mathf.Clamp(upSpeed, 0, 10000);
     }
 
     public void GetStunned()

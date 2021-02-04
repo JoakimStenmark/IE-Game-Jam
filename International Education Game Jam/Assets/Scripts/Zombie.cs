@@ -66,11 +66,12 @@ public class Zombie : MonoBehaviour
             switch (type)
             {
                 case ZombieType.falling:
-                    // TODO: Make function that checks if there are already 3 zombies hanging on the cart and if not it adds a new one
-                    if (true)
+                    if (collision.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement playerObject))
                     {
-                        Destroy(gameObject);
+                        if (playerObject.AddHangingZombie())
+                            Destroy(gameObject);
                     }
+                    
                     break;
                 case ZombieType.window:
                     if (attackTime >= attackSpeed)
