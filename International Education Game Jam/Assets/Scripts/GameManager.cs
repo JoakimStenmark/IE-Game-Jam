@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    public GameObject gameOverScreen;
+    public float positiveEndThreshold = 50000;
+    public GameObject positiveEndScreen;
+    public GameObject negativeEndScreen;
 
     public WindowManager windowManager;
 
@@ -19,8 +21,6 @@ public class GameManager : MonoBehaviour
     int currentScreen;
     public float spaceBetweenScreens;
     bool goToNextScreen = false;
-    
-
 
     private void Awake()
     {
@@ -41,11 +41,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void GameOver()
     {
         Debug.Log("Game is Over");
-        gameOverScreen.SetActive(true);
+        if (ScoreManager.instance.GetCurrentScore() >= positiveEndThreshold)
+            positiveEndScreen.SetActive(true);
+        else
+            negativeEndScreen.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -53,7 +55,4 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-
-
 }
