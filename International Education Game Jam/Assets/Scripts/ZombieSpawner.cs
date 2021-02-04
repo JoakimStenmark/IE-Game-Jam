@@ -47,7 +47,7 @@ public class ZombieSpawner : MonoBehaviour
                 return new Vector2(Random.Range(spawnXClamp.x, spawnXClamp.y), transform.position.y);
                 break;
             case ZombieType.window:
-                //return WindowManager.instance.GetSpawnableWindow().transform.position;
+                return WindowManager.instance.GetSpawnableWindow().transform.position;
                 break;
         }
         Debug.LogError("There was no zombie type given.");
