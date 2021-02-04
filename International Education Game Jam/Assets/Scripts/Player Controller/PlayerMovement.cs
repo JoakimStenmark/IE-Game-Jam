@@ -105,12 +105,15 @@ public class PlayerMovement : MonoBehaviour
 
         cleanTime += Time.deltaTime;
 
-        if (canClean && Input.GetKey(KeyCode.Space) && (int)itemHeld < 3)
+        if (hangingZombieIndex != 0)
         {
-            if (cleanTime >= cleanSpeed)
+            if (canClean && Input.GetKey(KeyCode.Space) && (int)itemHeld < 3)
             {
-                windowToClean.CleanWindowCombo();
-                cleanTime = 0;
+                if (cleanTime >= cleanSpeed)
+                {
+                    windowToClean.CleanWindowCombo();
+                    cleanTime = 0;
+                }
             }
         }
 
