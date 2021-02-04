@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float upSpeed;
     [SerializeField] private float downSpeed;
 
+    [SerializeField] private Vector2 xClamp, yClamp;
+
     private Rigidbody2D playerRB;
     private Vector2 playerDirection;
 

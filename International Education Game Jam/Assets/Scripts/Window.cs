@@ -7,7 +7,7 @@ public class Window : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public bool isDirty = false;
 
-    public int howDirty = 3; /*if this scale is a 4 (0 - 3)it is really dirty --- if it is at 0 it is clean*/
+    public int howDirty = 0; /*if this scale is a 4 (0 - 3)it is really dirty --- if it is at 0 it is clean*/
 
     private PlayerMovement player;
     public bool isSprayed = false;
@@ -17,12 +17,11 @@ public class Window : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = FindObjectOfType<PlayerMovement>();
+
+        isDirty = Random.Range(0, 100) <= 50 ? true : false;
+        if (isDirty)
+            howDirty = 3;
         WindowState();
-    }
-
-    private void Update()
-    {
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
