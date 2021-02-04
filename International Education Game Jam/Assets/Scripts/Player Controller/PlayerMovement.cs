@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayRightAnimation()
     {
-        throw new NotImplementedException();
+
     }
 
 }
