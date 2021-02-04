@@ -70,7 +70,7 @@ public class WindowManager : MonoBehaviour
                 }
             }
         }
-        
+
         if (cleanWindows.Count == 0)
         {
             return null;

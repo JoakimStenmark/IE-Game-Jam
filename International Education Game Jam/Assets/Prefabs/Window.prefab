@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDirty: 0
-  howDirty: 3
+  howDirty: 0
   isSprayed: 0
 --- !u!61 &911754699
 BoxCollider2D:
