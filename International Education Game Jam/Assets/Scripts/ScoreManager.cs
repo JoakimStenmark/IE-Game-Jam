@@ -9,16 +9,17 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
 
     //--- Score : Timer ---
-    [SerializeField] private TMP_Text timer;
-    [SerializeField] private float setMinutes;
-    [SerializeField] private float setSeconds;
-    
-    private bool totalTimePassed = false;
+    [SerializeField] private TMP_Text pointsBonus;
+    [SerializeField] private int changePointSpeed;
+    [SerializeField] private float totalBonusPoints;
+
+    private float setPoints;
+    private bool totalBonusScoreLost = false;
     private bool willGetBonus = true;
 
     private GameManager gameRef;
 
-    //--- Score : Timer : Add Score From Time
+    //--- Score : Timer : Add Score From Time ---
 
     private void Awake()
     {
@@ -32,29 +33,25 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if (!totalTimePassed)
+        if (!totalBonusScoreLost)
         {
-            setSeconds -= Time.deltaTime;
+            setPoints += Time.deltaTime;
         }
 
-        if(setSeconds <= 0)
+        if (setPoints >= changePointSpeed)
         {
-            setSeconds += 60;
-            setMinutes--;
-
-            if(setMinutes <= 0)
+            totalBonusPoints -= 100;
+            if(totalBonusPoints <= 100)
             {
-                setSeconds = 0;
-                setMinutes = 0;
-
-                totalTimePassed = true;
-                gameRef.GameOver();
+                totalBonusPoints = 0;
+                totalBonusScoreLost = true;
             }
+            setPoints = 0;
         }
 
-        TotalTime();
+        TotalBonusPoints();
 
-        
+
     }
 
 
@@ -74,8 +71,17 @@ public class ScoreManager : MonoBehaviour
         return currentScore;
     }
 
-    private void TotalTime()
+    private void TotalBonusPoints()
     {
-        timer.text = "Time : " + setMinutes.ToString() + " : " + Mathf.RoundToInt(setSeconds);
+        pointsBonus.text = "Extra Points : " + totalBonusPoints.ToString("000000");
     }
+
+    /*
+     * 10 000 Bonus points start
+     *  5 000 for performing a perfect combo
+     *  2 000 for repairing a window
+     *  1 000 for cleaning & wiping a window
+     *    500 for defeating a zombie
+    */
+
 }
