@@ -109,17 +109,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (isStunned)
         {
-            stunTime += Time.deltaTime;
-            if(stunTime <= maxStunTime)
-            {
-                horizontalSpeed = 4;
-                upSpeed = 1;
-                downSpeed = 2;
+            horizontalSpeed = 4;
+            upSpeed = 1;
+            downSpeed = 2;
 
+            stunTime += Time.deltaTime;
+            if(stunTime >= maxStunTime)
+            {
                 stunTime = 0;
                 isStunned = false;
             }
         }
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, xClamp.x, xClamp.y), Mathf.Clamp(transform.position.y, yClamp.x, yClamp.y), 0);
     }
 
     private void FixedUpdate()
