@@ -47,6 +47,10 @@ public class PlayerMovement : MonoBehaviour
     private float hangingHitTime;
     [SerializeField] private float timeToHitHangingZombie;
 
+
+    //--- Player: Window Zombie ---
+    private GameObject windowZombie = null;
+
     //--- Player : Animation --- 
     [SerializeField] private float cleanSpeed;
     private float cleanTime;
@@ -61,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
     private Window windowToClean;
     public bool canClean = false;
 
+    //--- Sprites ---
+    [SerializeField] private Sprite greenSprite, redSprite;
 
     void Start()
     {
@@ -88,8 +94,6 @@ public class PlayerMovement : MonoBehaviour
             speed = horizontalSpeed;
         }
 
-       
-
         if (playerDirection.y == 1)
         {
             speed = upSpeed;
@@ -111,15 +115,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         hangingHitTime += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && itemHeld == ItemHeld.Broom)
         {
             if (hangingHitTime >= timeToHitHangingZombie)
             {
-                RemoveHangingZombie();
-                hangingHitTime = 0f;
+                if (hangingZombieIndex > 0)
+                {
+                    RemoveHangingZombie();
+                    hangingHitTime = 0f;
+                }
+                else if (windowZombie)
+                {
+                    Destroy(windowZombie);
+                    windowZombie = null;
+                }
             }
         }
-
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -175,10 +186,20 @@ public class PlayerMovement : MonoBehaviour
         playerRB.velocity = playerDirection * speed;
     }
 
-    public bool AddHangingZombie()
+    public bool AddHangingZombie(string color)
     {
         if (hangingZombieIndex >= 3)
             return false;
+
+        switch (color)
+        {
+            case "green":
+                hangingZombies[hangingZombieIndex].GetComponent<SpriteRenderer>().sprite = greenSprite;
+                break;
+            case "red":
+                hangingZombies[hangingZombieIndex].GetComponent<SpriteRenderer>().sprite = redSprite;
+                break;
+        }
 
         hangingZombies[hangingZombieIndex].SetActive(true);
         hangingZombieIndex++;
@@ -194,9 +215,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void RemoveHangingZombie()
     {
-        if (hangingZombieIndex <= 0)
-            return;
-
         hangingZombies[hangingZombieIndex - 1].SetActive(false);
         hangingZombieIndex--;
 
@@ -205,6 +223,8 @@ public class PlayerMovement : MonoBehaviour
         downSpeed += data.hangingReductionVertical;
 
         upSpeed = Mathf.Clamp(upSpeed, 0, 10000);
+
+        ScoreManager.instance.ModifyScore(500);
     }
 
     public void GetStunned()
@@ -234,6 +254,18 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         windowToClean = collision.GetComponent<Window>();
+        if (collision.TryGetComponent<Zombie>(out Zombie zombie))
+        {
+            windowZombie = zombie.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject == windowZombie)
+        {
+            windowZombie = null;
+        }
     }
 
     public Vector2 ReturnDirection()

@@ -55,16 +55,15 @@ public class WindowManager : MonoBehaviour
         return true;
     }
 
-    public GameObject GetSpawnableWindow()
+    public GameObject GetSpawnableWindow(bool setHasZombieTrue = false)
     {
-
         List<GameObject> cleanWindows = new List<GameObject>();
 
         for (int y = 0; y < windowColumnAmount; y++)
         {
             for (int x = 0; x < windowRowAmount; x++)
             {
-                if (!windows[x, y].GetComponent<Window>().isDirty)
+                if (!windows[x, y].GetComponent<Window>().isDirty && !windows[x, y].GetComponent<Window>().hasZombie)
                 {
                     cleanWindows.Add(windows[x, y]);
                 }
@@ -72,9 +71,7 @@ public class WindowManager : MonoBehaviour
         }
 
         if (cleanWindows.Count == 0)
-        {
             return null;
-        }
 
         return cleanWindows[Random.Range(0, cleanWindows.Count)];
 
