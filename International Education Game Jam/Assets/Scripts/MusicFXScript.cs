@@ -20,8 +20,14 @@ public class MusicFXScript : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SetMusic(Random.Range(0, 3));
+    }
+
     public void PlaySoundEffect(int clipIndex)
     {
+        effectsSource.volume = 0.3f;
         effectsSource.PlayOneShot(audioEffects[clipIndex]);
     }
 

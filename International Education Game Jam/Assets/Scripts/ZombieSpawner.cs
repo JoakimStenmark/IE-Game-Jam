@@ -31,11 +31,13 @@ public class ZombieSpawner : MonoBehaviour
                     break;
                 zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.window), Quaternion.identity);
                 zombieObject.GetComponent<Zombie>().Setup(ZombieType.window, zombieData.attackSpeed, zombieData.fallSpeed);
+                MusicFXScript.instance.PlaySoundEffect(Random.Range(0,5));
             }
             else
             {
                 zombieObject = Instantiate(zombiePrefab, GetRandomSpawnLocation(ZombieType.falling), Quaternion.identity);
                 zombieObject.GetComponent<Zombie>().Setup(ZombieType.falling, zombieData.attackSpeed, zombieData.fallSpeed);
+                MusicFXScript.instance.PlaySoundEffect(Random.Range(0, 5));
             }
         }
     }
