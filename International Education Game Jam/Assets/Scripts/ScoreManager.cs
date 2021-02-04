@@ -9,18 +9,22 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
 
     //--- Score : Timer ---
-    [SerializeField] private TMP_Text pointsBonus;
-    [SerializeField] private TMP_Text totalScore;
+    public TMP_Text pointsBonus;
+    public TMP_Text scoreNow;
+    public TMP_Text totalScoreText;
 
-    [SerializeField] private int changePointSpeed;
-    [SerializeField] private float totalBonusPoints;
+    [SerializeField] private float changePointSpeed;
 
     private float setPoints;
     private bool totalBonusScoreLost = false;
-    private bool willGetBonus = true;
 
     private GameManager gameRef;
+
     private int currentScore = 0;
+    [SerializeField] private float totalBonusPoints;
+    private int totalScoreCalculate;
+
+
 
     //--- Score : Timer : Add Score From Time ---
 
@@ -37,23 +41,29 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if (!totalBonusScoreLost)
+        if (!GameManager.instance.gameOver)
         {
-            setPoints += Time.deltaTime;
-        }
-
-        if (setPoints >= changePointSpeed)
-        {
-            totalBonusPoints -= 1000;
-            if(totalBonusPoints <= 100)
+            if (!totalBonusScoreLost)
             {
-                totalBonusPoints = 0;
-                totalBonusScoreLost = true;
+                setPoints += Time.deltaTime;
             }
-            setPoints = 0;
-        }
 
-        TotalBonusPoints();
+            if (setPoints >= changePointSpeed)
+            {
+                totalBonusPoints -= 500;
+                if (totalBonusPoints <= 0)
+                {
+                    totalBonusPoints = 0;
+                    totalBonusScoreLost = true;
+                }
+                setPoints = 0;
+            }
+
+            TotalBonusPoints();
+        }
+        
+            
+        
     }
 
 
@@ -62,7 +72,7 @@ public class ScoreManager : MonoBehaviour
     public void ModifyScore(int modification)
     {
         currentScore += modification;
-        totalScore.text = "Total Score : " + currentScore.ToString("000000");
+        scoreNow.text = "Total Score : " + currentScore.ToString("000000");
     }
 
     // Returns the current score the player has
@@ -74,6 +84,18 @@ public class ScoreManager : MonoBehaviour
     private void TotalBonusPoints()
     {
         pointsBonus.text = "Extra Points : " + totalBonusPoints.ToString("000000");
+    }
+
+    public void EmptyText()
+    {
+        pointsBonus.text = "";
+        scoreNow.text = "";
+    }
+
+    public void CalculateTotalScore()
+    {
+        totalScoreCalculate = currentScore + (int)totalBonusPoints;
+        totalScoreText.text = "Final Score : " + totalScoreCalculate.ToString();
     }
 
     /*

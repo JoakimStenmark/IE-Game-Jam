@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public float spaceBetweenScreens;
     bool goToNextScreen = false;
 
+    public bool gameOver = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -44,7 +46,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        gameOver = true;
         Debug.Log("Game is Over");
+
+        ScoreManager.instance.CalculateTotalScore();
+        ScoreManager.instance.EmptyText();
         if (ScoreManager.instance.GetCurrentScore() >= positiveEndThreshold)
             positiveEndScreen.SetActive(true);
         else
